@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* html, body, #root {
+    background-color: #e5e7eb;
+    background-image: url('/src/assets/unsplash.jpg');
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center center;
+    @apply w-full h-full;
+} */
+
+html, body, #root {
+  @apply w-full h-full
+}
