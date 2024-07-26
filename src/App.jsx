@@ -27,6 +27,7 @@ const dummyTodos = [
 function App() {
 
   const [todos, setTodos] = useState(dummyTodos);
+  const [selectedCategory, setFilter] = useState('ALL');
 
   // Todo 등록 기능, 파라미터로 새롭게 추가할 Todo 객체를 받음
   const addTodoHandler = ({ title, summary, category }) => {
@@ -52,6 +53,12 @@ function App() {
   // Todo 삭제 기능
   const deleteTodoHandler = (id) => setTodos(todos.filter(todo => todo.id !== id));
 
+  // Todo 필터링 기능
+  const filterTodos = () => selectedCategory === 'ALL' ? todos : todos.filter(todo => todo.category === selectedCategory);
+  
+  // 필터링된 Todo 리스트(배열)
+  const filteredTodos = filterTodos();
+
   return (
     <>
       <DefaultLayout>
@@ -64,8 +71,8 @@ function App() {
         </header>
         <section className="max-w-xl m-4 mx-auto">
           {/* onAdd라는 이름으로 addTodoHandler 함수를 props로 내려줌 */}
-          <TodoHeader onAdd={addTodoHandler}/>
-          <TodoBody todos={todos} onUpdate={updateTodoHandler} onDelete={deleteTodoHandler} />
+          <TodoHeader onAdd={addTodoHandler} category={selectedCategory} onFilter={setFilter}/>
+          <TodoBody todos={filteredTodos} onUpdate={updateTodoHandler} onDelete={deleteTodoHandler} />
         </section>
       </DefaultLayout> 
     </>
