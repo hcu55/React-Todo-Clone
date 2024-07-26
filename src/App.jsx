@@ -49,6 +49,9 @@ function App() {
     setTodos(updatedTodos);
   }
   
+  // Todo 삭제 기능
+  const deleteTodoHandler = (id) => setTodos(todos.filter(todo => todo.id !== id));
+
   return (
     <>
       <DefaultLayout>
@@ -62,7 +65,7 @@ function App() {
         <section className="max-w-xl m-4 mx-auto">
           {/* onAdd라는 이름으로 addTodoHandler 함수를 props로 내려줌 */}
           <TodoHeader onAdd={addTodoHandler}/>
-          <TodoBody todos={todos} onUpdate={updateTodoHandler}/>
+          <TodoBody todos={todos} onUpdate={updateTodoHandler} onDelete={deleteTodoHandler} />
         </section>
       </DefaultLayout> 
     </>
